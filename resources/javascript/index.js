@@ -11,6 +11,7 @@ function resizeCanvas() {
     canvas.width = canvas.offsetWidth * ratio;
     canvas.height = canvas.offsetHeight * ratio;
     canvas.getContext("2d").scale(ratio, ratio);
+    
 }
 
 window.onresize = resizeCanvas;
@@ -40,28 +41,7 @@ document.getElementById('save-jpeg').addEventListener('click', function () {
   window.open(data);
 });
 
-document.getElementById('save-svg').addEventListener('click', function () {
-  if (signaturePad.isEmpty()) {
-    return alert("Please provide a signature first.");
-  }
-
-  var data = signaturePad.toDataURL('image/svg+xml');
-  console.log(data);
-  console.log(atob(data.split(',')[1]));
-  window.open(data);
-});
 
 document.getElementById('clear').addEventListener('click', function () {
   signaturePad.clear();
-});
-
-document.getElementById('draw').addEventListener('click', function () {
-  var ctx = canvas.getContext('2d');
-  console.log(ctx.globalCompositeOperation);
-  ctx.globalCompositeOperation = 'source-over'; // default value
-});
-
-document.getElementById('erase').addEventListener('click', function () {
-  var ctx = canvas.getContext('2d');
-  ctx.globalCompositeOperation = 'destination-out';
 });
